@@ -92,6 +92,22 @@
                     </tr>
                 </tfoot>
             </table>
+            <form class="d-flex flex-column gap-3 mb-2" @submit.prevent="date()">
+                <div>
+                    <h6>Download transaction report in a specific date range</h6>
+                </div>
+                <div>
+                    <label for="dateFrom">From date</label>
+                    <input type="date" name="dateFrom" id="dateFrom" v-model="dateFrom" required>
+                    <label for="toDate">To date</label>
+                    <input type="date" name="toDate" id="toDate" v-model="toDate" required>
+                </div>
+                <div>
+                    <button type="submit" class="btn btn-primary" :disabled="dateFrom == '' || toDate == ''">Download</button>
+                    <hr>
+                </div>
+
+            </form>
             <!-- Button trigger modal -->
             <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
                 Request account closure

@@ -15,6 +15,8 @@ const APP = Vue.createApp({
             horaActual2: "",
             nombreCliente: "",
             loansLength: 0,
+            toDate: '',
+            dateFrom: ''
         }
     },
 
@@ -72,6 +74,19 @@ const APP = Vue.createApp({
                     }
                 });
         },
+
+        date() {
+            if (this.nombreCuenta != '' && this.dateFrom != '' && this.toDate != '') {
+                axios.get(`/api/pdf/transactions?accountNumber=${this.nombreCuenta}&fromDate=${this.dateFrom}&toDate=${this.toDate}`)
+                    .then(response => {
+                        swal("Report created successfully!")
+                    }).catch(function(error) {
+                        swal("Error", error.message, "error");
+                    });
+            } else {
+                swal("Error", "You must complete all the fields", "error");
+            }
+        }
     },
 
     computed: {
