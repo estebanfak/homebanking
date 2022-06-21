@@ -1,0 +1,324 @@
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
+    
+     :root {
+        --background-color: rgb(236, 236, 236);
+        --background-color-html: rgb(33, 37, 41);
+        --color-azul-logo: rgb(46, 108, 164);
+    }
+    
+    div>#app {
+        background-color: var(--background-color-html) !important;
+    }
+    
+    [v-cloak] {
+        display: none;
+    }
+    
+    header>div>a>img {
+        max-width: 200px !important;
+    }
+    
+    #logoutButton {
+        position: relative !important;
+        right: 10% !important;
+    }
+    
+    #nombreBanco {
+        max-width: 45% !important;
+    }
+    
+    body>div> {
+        min-height: 100% !important;
+    }
+    
+    .posicionBotonesYOpciones {
+        position: relative;
+        left: 13%;
+    }
+    
+    header>h1 {
+        height: 10vh;
+    }
+    
+    html {
+        background-color: black;
+    }
+    
+    main,
+    body {
+        background-color: var(--background-color);
+    }
+    
+    #prueba {
+        border: 5px;
+        animation: myAnim 1s ease 0s 1 normal forwards;
+    }
+    
+    #prueba2 {
+        border: 5px;
+        animation: myAnim 1.5s ease 0s 1 normal forwards;
+    }
+    
+    #prueba3 {
+        border: 5px;
+        animation: myAnim 2s ease 0s 1 normal forwards;
+    }
+    
+    @keyframes myAnim {
+        0% {
+            transform: translateX(200px);
+        }
+        100% {
+            transform: translateX(0px);
+        }
+    }
+    
+    .accesosRapidosImagenes {
+        width: 50px !important;
+        height: 50px !important;
+    }
+    
+    a,
+    div>a,
+    div>a:hover {
+        text-decoration: none !important;
+        color: black;
+    }
+    
+    .accesosRapidosLinks {
+        text-decoration: none;
+        color: black;
+    }
+    
+    #fondoBody,
+    body,
+    .container {
+        background-color: var(--background-color) !important;
+    }
+    
+    .sombra {
+        -webkit-box-shadow: 0px 0px 23px 7px rgba(0, 0, 0, 0.60);
+        box-shadow: 0px 0px 23px 7px rgba(0, 0, 0, 0.60);
+    }
+    
+    .sombra:hover {
+        -webkit-box-shadow: 0px 0px 23px 7px #000000;
+        box-shadow: 0px 0px 23px 7px #000000;
+    }
+    
+    footer {
+        height: 30vh;
+        color: white;
+    }
+    
+    .typed-out {
+        overflow: hidden;
+        font-size: 1.6rem;
+        width: 0;
+    }
+    
+    @keyframes typing {
+        from {
+            width: 0
+        }
+        to {
+            width: 100%
+        }
+    }
+    
+    .typed-out {
+        overflow: hidden;
+        white-space: nowrap;
+        font-size: 1.6rem;
+        width: 0;
+        animation: typing 6s forwards;
+    }
+    
+    footer>div>img {
+        width: 150px;
+    }
+    
+    footer>div>a>svg {
+        transition: 150ms;
+    }
+    
+    footer>div>a>svg:hover {
+        transition: 150ms;
+        width: 40px;
+        height: 40px;
+    }
+    
+    #iconosAccesosRapidos>div {
+        min-width: 184px !important;
+        max-width: 184px !important;
+    }
+    
+    form>a:hover {
+        color: inherit !important;
+    }
+    /*----------------------------------------------------VENCIMIENTO TARJETA------------------------------------------------------------------*/
+    
+    #arrowTilt {
+        color: red;
+        animation: tiltImage 1s linear infinite;
+    }
+    
+    @keyframes tiltImage {
+        0% {
+            /* transform: skewY(10deg); */
+            transform: translateX(30px);
+        }
+        50% {
+            /* transform: skewY(-10deg); */
+            transform: translateX(0px);
+        }
+        100% {
+            /* transform: skewY(10deg); */
+            transform: translateX(30px);
+        }
+    }
+    /*---------------------------------------------------- FIN VENCIMIENTO TARJETA------------------------------------------------------------------*/
+    /* ----------------------------------------------------------TARJETAS------------------------------------------------------------------------------- */
+    
+    .wrapper {
+        height: 250px;
+        width: 340px;
+        perspective: 300px;
+    }
+    
+    .card66,
+    .cards66 .face,
+    .cards66 .back,
+    .TITANIUM,
+    .GOLD,
+    .SILVER {
+        box-shadow: 0px 0px 30px 0px rgba(0, 0, 0, 0.3);
+        border-radius: 1rem;
+        cursor: pointer;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        height: 200px;
+        width: 340px;
+    }
+    
+    .cards66 .face .head {
+        display: flex;
+        justify-content: space-between;
+        margin: 16px 16px 0 16px;
+    }
+    
+    .cards66 .face .head .title {
+        font-weight: 600;
+        font-size: 20px;
+    }
+    
+    .cards66 .face .main {
+        margin: 5px 16px 0 16px;
+    }
+    
+    .cards66 .face .main .number {
+        font-size: 24px;
+    }
+    
+    .number {
+        margin-bottom: 10px;
+    }
+    
+    .cards66 .face .dates {
+        display: flex;
+        max-width: 150px;
+        justify-content: space-between;
+        margin: 5px 16px 16px 16px;
+    }
+    
+    .dates {
+        font-size: smaller;
+    }
+    
+    .cards66 .back {
+        position: absolute;
+        top: 0;
+        left: 0;
+        z-index: -1;
+    }
+    
+    .cards66 .back .magnetic-line {
+        background: #000;
+        margin-top: 16px;
+        height: 32px;
+        width: 100%;
+    }
+    
+    .cards66 .back .cvv {
+        display: flex;
+        justify-content: center;
+        flex-direction: column;
+        background: rgba(255, 255, 255, 0.2);
+        border-radius: 4px;
+        margin: 0 16px 30px 0;
+        text-align: end;
+        padding-right: 8px;
+        width: 235.6666666667px;
+        height: 24px;
+    }
+    
+    .cards66:hover .back {
+        transform: translateY(60px);
+        transition: transform 1s;
+    }
+    
+    @keyframes demo {
+        0% {
+            transform: translateX(0) translateY(0);
+        }
+        50% {
+            transform: translateY(60px);
+        }
+        75% {
+            transform: translateY(60px);
+        }
+        100% {
+            transform: translateY(0);
+        }
+    }
+    
+    .visa {
+        fill: #fff;
+    }
+    
+    .TITANIUM {
+        background-image: url(../assets/titanium.png);
+        background-size: 100%;
+        color: white;
+    }
+    
+    .SILVER {
+        background-image: url(../assets/silver.png);
+        background-size: 100%;
+    }
+    
+    .GOLD {
+        background-image: url(../assets/fondoGold.png);
+        background-size: 100%;
+    }
+    
+    .DEBITO {
+        width: 100%;
+        height: 42px;
+        background-image: url(../assets/DEBIT/logo_white_large.png);
+        background-size: 45px;
+        background-repeat: no-repeat;
+    }
+    
+    .CREDITO {
+        width: 100%;
+        height: 42px;
+        background-image: url(../assets/CREDIT/logo_white_large.png);
+        background-size: 50px;
+        background-repeat: no-repeat;
+    }

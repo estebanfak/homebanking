@@ -1,0 +1,164 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    --background-color: rgb(236, 236, 236);
+    --background-color-html: rgb(33, 37, 41);
+    --color-azul-logo: rgb(46, 108, 164);
+}
+
+div>#app {
+    background-color: var(--background-color-html) !important;
+}
+
+[v-cloak] {
+    display: none;
+}
+
+header>div>a>img {
+    max-width: 200px !important;
+}
+
+#nombreBanco {
+    max-width: 45% !important;
+}
+
+body>div> {
+    min-height: 100% !important;
+}
+
+.posicionBotonesYOpciones {
+    position: relative;
+    left: 10%;
+}
+
+#logoutButton {
+    position: relative !important;
+    right: 10% !important;
+}
+
+header>h1 {
+    height: 10vh;
+}
+
+html {
+    background-color: black;
+}
+
+main,
+body {
+    background-color: var(--background-color);
+}
+
+@media (max-width: 800px) {
+    #formCards {
+        width: 80% !important;
+    }
+}
+
+#prueba {
+    border: 5px;
+    animation: myAnim 1s ease 0s 1 normal forwards;
+}
+
+#prueba2 {
+    border: 5px;
+    animation: myAnim 1.5s ease 0s 1 normal forwards;
+}
+
+#prueba3 {
+    border: 5px;
+    animation: myAnim 2s ease 0s 1 normal forwards;
+}
+
+@keyframes myAnim {
+    0% {
+        transform: translateX(200px);
+    }
+    100% {
+        transform: translateX(0px);
+    }
+}
+
+.accesosRapidosImagenes {
+    width: 50px !important;
+    height: 50px !important;
+}
+
+a,
+div>a,
+div>a:hover {
+    text-decoration: none !important;
+    color: black;
+}
+
+.accesosRapidosLinks {
+    text-decoration: none;
+    color: black;
+}
+
+#fondoBody,
+body,
+.container {
+    background-color: var(--background-color) !important;
+}
+
+.sombra {
+    -webkit-box-shadow: 0px 0px 23px 7px rgba(0, 0, 0, 0.60);
+    box-shadow: 0px 0px 23px 7px rgba(0, 0, 0, 0.60);
+}
+
+.sombra:hover {
+    -webkit-box-shadow: 0px 0px 23px 7px #000000;
+    box-shadow: 0px 0px 23px 7px #000000;
+}
+
+footer {
+    height: 30vh;
+    color: white;
+}
+
+.typed-out {
+    overflow: hidden;
+    font-size: 1.6rem;
+    width: 0;
+}
+
+@keyframes typing {
+    from {
+        width: 0
+    }
+    to {
+        width: 100%
+    }
+}
+
+.typed-out {
+    overflow: hidden;
+    white-space: nowrap;
+    font-size: 1.6rem;
+    width: 0;
+    animation: typing 6s forwards;
+}
+
+footer>div>img {
+    width: 150px;
+}
+
+footer>div>a>svg {
+    transition: 150ms;
+}
+
+footer>div>a>svg:hover {
+    transition: 150ms;
+    width: 40px;
+    height: 40px;
+}
+
+#iconosAccesosRapidos>div {
+    min-width: 184px !important;
+    max-width: 184px !important;
+}
