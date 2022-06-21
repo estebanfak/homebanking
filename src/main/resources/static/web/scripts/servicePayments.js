@@ -16,7 +16,7 @@ const APP = Vue.createApp({
         }
     },
     created() {
-        axios.get('http://localhost:8080/api/clients/current')
+        axios.get('/api/clients/current')
             .then(datos => {
                 this.clientes = datos.data
                 this.rellenarCampos()
@@ -41,12 +41,12 @@ const APP = Vue.createApp({
         },
 
         logout() {
-            axios.post('http://localhost:8080/api/logout')
+            axios.post('/api/logout')
                 .then(response => {
                     if (response.status == 201) {
-                        location = 'http://localhost:8080/web/accounts.html';
+                        location = '/web/accounts.html';
                     } else {
-                        location = 'http://localhost:8080/web/index.html';
+                        location = '/web/index.html';
                     }
                 })
                 .then(response => console.log('signed out!!!'))

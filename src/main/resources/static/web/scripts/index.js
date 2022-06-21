@@ -24,7 +24,7 @@ const APP = Vue.createApp({
                 .then(response => {
                     if (response.status == 200) {
                         console.log(response);
-                        location = 'http://localhost:8080/web/accounts.html';
+                        location = '/web/accounts.html';
                     }
                 })
                 .catch(function(error) {

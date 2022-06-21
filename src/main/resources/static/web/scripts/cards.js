@@ -14,7 +14,7 @@ const APP = Vue.createApp({
     },
 
     created() {
-        axios.get(`http://localhost:8080/api/clients/current`)
+        axios.get(`/api/clients/current`)
             .then(datos => {
                 this.clientes = datos.data
                 this.loansLength = datos.data.loans.length
@@ -73,12 +73,12 @@ const APP = Vue.createApp({
             }
         },
         logout() {
-            axios.post('http://localhost:8080/api/logout')
+            axios.post('/api/logout')
                 .then(response => {
                     if (response.status == 201) {
-                        location = 'http://localhost:8080/web/accounts.html';
+                        location = '/web/accounts.html';
                     } else {
-                        location = 'http://localhost:8080/web/index.html';
+                        location = '/web/index.html';
                     }
                 })
         },
@@ -87,11 +87,11 @@ const APP = Vue.createApp({
         },
         eliminarTarjeta() {
             if (this.tarjetaSeleccionada != "") {
-                axios.patch(`http://localhost:8080/api/clients/current/cards?cardNumber=${this.tarjetaSeleccionada}`)
+                axios.patch(`/api/clients/current/cards?cardNumber=${this.tarjetaSeleccionada}`)
                     .then(() => {
                         swal("", "Tarjeta eliminada", "info")
                             .then(() => {
-                                location = "http://localhost:8080/web/cards.html"
+                                location = "/web/cards.html"
                             })
                     })
                     .catch(function(error) {

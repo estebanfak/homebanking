@@ -16,13 +16,13 @@ const APP = Vue.createApp({
     },
 
     created() {
-        axios.get(`http://localhost:8080/api/clients/current`)
+        axios.get(`/api/clients/current`)
             .then(datos => {
                 this.cuentas = datos.data.accounts
                 this.prestamosSolicitados = datos.data.loans
                 this.loansLength = datos.data.loans.length
             })
-        axios.get('http://localhost:8080/api/loans')
+        axios.get('/api/loans')
             .then(datos => {
                 this.loans = datos.data
             })
@@ -30,7 +30,7 @@ const APP = Vue.createApp({
 
     methods: {
         filtroLoans() {
-            axios.get('http://localhost:8080/api/loans')
+            axios.get('/api/loans')
                 .then(datos => {
                     this.loans = datos.data
                     this.loanFiltrado = this.loans.filter(loan => loan.name == this.loanName)
@@ -54,7 +54,7 @@ const APP = Vue.createApp({
                     })
                     .then(() => console.log('created'))
                     .then(() => swal("Solicitud de prestamo completada!"))
-                    .then(() => location = 'http://localhost:8080/web/accounts.html')
+                    .then(() => location = '/web/accounts.html')
                     .catch(() => console.log('error'))
             }
         },
@@ -72,12 +72,12 @@ const APP = Vue.createApp({
 
 
         logout() {
-            axios.post('http://localhost:8080/api/logout')
+            axios.post('/api/logout')
                 .then(response => {
                     if (response.status == 201) {
-                        location = 'http://localhost:8080/web/accounts.html';
+                        location = '/web/accounts.html';
                     } else {
-                        location = 'http://localhost:8080/web/index.html';
+                        location = '/web/index.html';
                     }
                 })
                 .then(() => console.log('signed out!!!'))

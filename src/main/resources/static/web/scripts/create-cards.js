@@ -17,7 +17,7 @@ const APP = Vue.createApp({
     },
 
     created() {
-        axios.get(`http://localhost:8080/api/clients/current`)
+        axios.get(`/api/clients/current`)
             .then(datos => {
                 this.tarjetas = datos.data.cards
                 this.loansLength = datos.data.loans.length
@@ -44,17 +44,17 @@ const APP = Vue.createApp({
             axios.post('/api/clients/current/cards', `cardType=${this.cardType}&cardColor=${this.cardColor}`, { headers: { 'content-type': 'application/x-www-form-urlencoded' } })
                 .then(() => console.log('Creado'))
                 .then(response => {
-                    location = 'http://localhost:8080/web/cards.html'
+                    location = '/web/cards.html'
                 })
         },
 
         logout() {
-            axios.post('http://localhost:8080/api/logout')
+            axios.post('/api/logout')
                 .then(response => {
                     if (response.status == 201) {
-                        location = 'http://localhost:8080/web/accounts.html';
+                        location = '/web/accounts.html';
                     } else {
-                        location = 'http://localhost:8080/web/index.html';
+                        location = '/web/index.html';
                     }
                 })
                 .then(() => console.log('signed out!!!'))
