@@ -66,16 +66,16 @@ public class HomebankingApplication {
 			transactionRepository.save(transaccion5);
 			transactionRepository.save(transaccion6);
 			//-------------------------------------------------------------------------------------------------------------------------------------
-			Transaction transaccion7 = new Transaction(DEBIT, LocalDateTime.now().minusDays(1), -600.00, "alquiler", cuenta1);
-			Transaction transaccion8 = new Transaction(DEBIT, LocalDateTime.now().minusDays(2), -600.00, "alquiler", cuenta1);
-			Transaction transaccion9 = new Transaction(CREDIT, LocalDateTime.now().minusDays(3), 600.00, "alquiler", cuenta1);
-			Transaction transaccion10 = new Transaction(DEBIT, LocalDateTime.now().minusDays(4), -600.00, "alquiler", cuenta1);
-			Transaction transaccion11= new Transaction(DEBIT, LocalDateTime.now().minusDays(5), -600.00, "alquiler", cuenta1);
-			Transaction transaccion12 = new Transaction(CREDIT, LocalDateTime.now().minusDays(6), 600.00, "alquiler", cuenta1);
-			Transaction transaccion13 = new Transaction(DEBIT, LocalDateTime.now().minusDays(7), -600.00, "alquiler", cuenta1);
-			Transaction transaccion14 = new Transaction(DEBIT, LocalDateTime.now().minusDays(8), -600.00, "alquiler", cuenta1);
-			Transaction transaccion15 = new Transaction(CREDIT, LocalDateTime.now().minusDays(9), 600.00, "alquiler", cuenta1);
-			Transaction transaccion16 = new Transaction(DEBIT, LocalDateTime.now().minusDays(10), -600.00, "alquiler", cuenta1);
+			Transaction transaccion7 = new Transaction(DEBIT, LocalDateTime.now().minusDays(10), -600.00, "alquiler", cuenta1);
+			Transaction transaccion8 = new Transaction(DEBIT, LocalDateTime.now().minusDays(9), -600.00, "alquiler", cuenta1);
+			Transaction transaccion9 = new Transaction(CREDIT, LocalDateTime.now().minusDays(8), 600.00, "alquiler", cuenta1);
+			Transaction transaccion10 = new Transaction(DEBIT, LocalDateTime.now().minusDays(7), -600.00, "alquiler", cuenta1);
+			Transaction transaccion11= new Transaction(DEBIT, LocalDateTime.now().minusDays(6), -600.00, "alquiler", cuenta1);
+			Transaction transaccion12 = new Transaction(CREDIT, LocalDateTime.now().minusDays(5), 600.00, "alquiler", cuenta1);
+			Transaction transaccion13 = new Transaction(DEBIT, LocalDateTime.now().minusDays(4), -600.00, "alquiler", cuenta1);
+			Transaction transaccion14 = new Transaction(DEBIT, LocalDateTime.now().minusDays(3), -600.00, "alquiler", cuenta1);
+			Transaction transaccion15 = new Transaction(CREDIT, LocalDateTime.now().minusDays(2), 600.00, "alquiler", cuenta1);
+			Transaction transaccion16 = new Transaction(DEBIT, LocalDateTime.now().minusDays(1), -600.00, "alquiler", cuenta1);
 			Transaction transaccion17 = new Transaction(DEBIT, LocalDateTime.now().plusDays(2), -600.00, "alquiler", cuenta1);
 			Transaction transaccion18 = new Transaction(CREDIT, LocalDateTime.now().plusDays(3), 600.00, "alquiler", cuenta1);
 			Transaction transaccion19 = new Transaction(DEBIT, LocalDateTime.now().plusDays(4), -600.00, "alquiler", cuenta1);
@@ -135,7 +135,6 @@ public class HomebankingApplication {
 			cardRepository.save(card4);
 			cardRepository.save(card5);
 
-			System.out.println(LocalDate.now());
 
 
 
