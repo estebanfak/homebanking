@@ -89,7 +89,32 @@
                             <h4>Consolidated balance: <b v-cloak>${{consolidatedBalance}}</b></h4>
                         </div>
                         <div v-else>
-                            <h5 class="card-title p-5">You do not have any account, if you want to request one, click <a href="#" @click="agregarCuenta()">here</a></h5>
+                            <h5 class="card-title p-5">You do not have any account, if you want to request one, click <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#nuevaCuenta2">
+                                Here
+                              </button></h5>
+                            <div class="modal fade" id="nuevaCuenta2" tabindex="-1" aria-labelledby="nuevaCuentaModal" aria-hidden="true">
+                                <div class="modal-dialog">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h5 class="modal-title" id="nuevaCuentaModal">Request new account</h5>
+                                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                        </div>
+                                        <div class="modal-body">
+                                            <h6>What type of account do you want to apply for?</h6>
+                                            <form class="d-flex gap-1 align-items-center">
+                                                <input type="radio" name="saving" id="saving" value="SAVING" v-model="accountType">
+                                                <label for="saving"> Saving account </label>
+                                                <input type="radio" name="checking" id="checking" value="CHECKING" v-model="accountType">
+                                                <label for="checking"> Checking account </label>
+                                            </form>
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                                            <button type="button" class="btn btn-primary" @click="agregarCuenta()">Apply</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                         <div v-if="cuentas.length < 3 && cuentas.length != 0">
                             <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#nuevaCuenta">
@@ -104,11 +129,11 @@
                                         </div>
                                         <div class="modal-body">
                                             <h6>What type of account do you want to apply for?</h6>
-                                            <form>
+                                            <form class="d-flex gap-1 align-items-center">
                                                 <input type="radio" name="saving" id="saving" value="SAVING" v-model="accountType">
-                                                <label for="saving">Saving account</label>
+                                                <label for="saving"> Saving account </label>
                                                 <input type="radio" name="checking" id="checking" value="CHECKING" v-model="accountType">
-                                                <label for="checking">Checking account</label>
+                                                <label for="checking"> Checking account </label>
                                             </form>
                                         </div>
                                         <div class="modal-footer">

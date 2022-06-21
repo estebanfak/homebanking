@@ -81,11 +81,10 @@ public class AccountController {
 //----------------------------------------------------------------------------------------------------------------------
 // -------------------------------------------PAYMENTS------------------------------------------------------------------
     @PostMapping("/clients/current/account/payments")
-    public ResponseEntity<Object> payments(@RequestBody PaymentsDTO paymentsDTO, Authentication authentication) {
+    public ResponseEntity<Object> payments(@RequestBody PaymentsDTO paymentsDTO) {
 
-        Client client = clientService.getClientByEmail(authentication.getName());
 
-        if (paymentsDTO.getNumber().isEmpty()) {
+        if (paymentsDTO.getCardNumber().isEmpty()) {
             return new ResponseEntity<>("Missing data: Number", HttpStatus.FORBIDDEN);
         }
         if (paymentsDTO.getSecurityCode().isEmpty()) {
@@ -97,29 +96,18 @@ public class AccountController {
         if (paymentsDTO.getDetail().isEmpty()) {
             return new ResponseEntity<>("Missing data: Detail", HttpStatus.FORBIDDEN);
         }
-        if (paymentsDTO.getPayingMethod().isEmpty()) {
-            return new ResponseEntity<>("Missing data: Paying method", HttpStatus.FORBIDDEN);
-        }
 
-        Account account = null;
-        Card card = null;
+        Card card = cardService.getCard(paymentsDTO.getCardNumber());
+        Client client = card.getClient();
+        Account account = client.getAccounts().stream().filter(account1 -> account1.isActive() && account1.getBalance()>= paymentsDTO.getAmount()).findFirst().orElse(null);
 
-        if (client.getAccounts().contains(accountService.getAccountByNumber(paymentsDTO.getPayingMethod()))) {
-            account = accountService.getAccountByNumber(paymentsDTO.getPayingMethod());
-        }
-        if (client.getCards().contains(cardService.getCard(paymentsDTO.getNumber()))) {
-            card = cardService.getCard(paymentsDTO.getPayingMethod());
-        }
-        if (card == null && account == null){
-            return new ResponseEntity<>("You do not own the paying method", HttpStatus.FORBIDDEN);
-        }
 
         assert account != null;
         if(paymentsDTO.getAmount() > account.getBalance()){
             return new ResponseEntity<>("Account balance not enough", HttpStatus.FORBIDDEN);
         }
 
-        Transaction transaction = new Transaction(TransactionType.DEBIT, LocalDateTime.now(), -paymentsDTO.getAmount(), paymentsDTO.getDetail() + " " + "Payment number: " + paymentsDTO.getNumber(), account);
+        Transaction transaction = new Transaction(TransactionType.DEBIT, LocalDateTime.now(), -paymentsDTO.getAmount(), paymentsDTO.getDetail() + " " + "Payment number: ", account);
         account.setBalance(account.getBalance()-paymentsDTO.getAmount());
         transacctionService.saveTransaction(transaction);
         accountService.saveAccount(account);

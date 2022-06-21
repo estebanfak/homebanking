@@ -62,52 +62,52 @@
         </nav>
         <div class="container">
             <main>
-                <h1>Solicitud de prestamo</h1>
+                <h1>Loan application</h1>
                 <form class="col-6" id="formLoans">
                     <div class="mb-3 d-flex flex-wrap align-items-center gap-2" v-cloak>
-                        <h5 class="w-100">Tipo de prestamo</h5>
+                        <h5 class="w-100">Type of loan</h5>
                         <div class="w-40 d-flex align-items-center gap-1" v-for="loan in loans">
                             <input v-if="prestamosSolicitadosFunc(loan.name)" type="radio" @click="filtroLoans" :name="loan.name" v-model="loanName" :id="loan.name" :value="loan.name" min="1" :max="loan.maxAmount" required>
                             <label v-if="prestamosSolicitadosFunc(loan.name)" :for="loan.name" class="w-40">{{loan.name}}</label>
                         </div>
                     </div>
                     <div class="mb-3">
-                        <label for="importe" class="w-100">Importe</label>
+                        <label for="importe" class="w-100">Amount</label>
                         <input type="number" min="1" name="importe" class="w-100" id="importe" v-model="importe" :placeholder="maxAmountSelected" :disabled="loanName == ''" required>
-                        <p class="w-100" style="color: red;" v-if="importe > maxAmountSelectedCompare || importe <= 0" :hidden="importe == ''">El importe debe ser mayor a 0 y menor de {{maxAmountSelectedCompare}}</p>
+                        <p class="w-100" style="color: red;" v-if="importe > maxAmountSelectedCompare || importe <= 0" :hidden="importe == ''">The amount must be greater than 0 and less than {{maxAmountSelectedCompare}}</p>
                     </div>
                     <div class="mb-3 d-flex flex-wrap align-items-center gap-2">
-                        <label for="cuentaAcreditacion">Seleccione cuenta de acreditación</label>
+                        <label for="cuentaAcreditacion">Select accreditation account</label>
                         <select class="form-select form-select-sm" aria-label=".form-select-sm example" v-model="cuentaAcreditacion" id="cuentaAcreditacion" :disabled="importe == '' || importe > maxAmountSelectedCompare" required>
                               <option v-for="cuenta in cuentas" :value="cuenta.number">{{cuenta.number}} - Balance: ${{cuenta.balance}}</option>
                         </select>
                     </div>
                     <div class="mb-3 d-flex flex-wrap align-items-center gap-2">
-                        <label for="cantidadDePagos">Cantidad de pagos</label>
+                        <label for="cantidadDePagos">Number of payments</label>
                         <select class="form-select form-select-sm" aria-label=".form-select-sm example" v-model="cantidadDePagosSeleccionado" id="cantidadDePagosSeleccionado" :disabled="cuentaAcreditacion == ''" required>
                               <option v-for="pago in cantidadDePagos" :value="pago">{{pago}}</option>
                         </select>
                     </div>
 
                     <button :disabled="loanName == '' || importe == 0 || importe > maxAmountSelectedCompare || importe <= 0 || cuentaAcreditacion == '' || cantidadDePagosSeleccionado == ''" type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#crearTransaccionModal">
-                        Continuar
+                        Continue
                       </button>
                     <!-- Modal -->
                     <div class="modal fade" id="crearTransaccionModal" tabindex="-1" aria-labelledby="crearTransaccionModalLabel" aria-hidden="true" v-cloak>
                         <div class="modal-dialog">
                             <div class="modal-content">
                                 <div class="modal-header">
-                                    <h5 class="modal-title" id="crearTransaccionModalLabel">Confirmación de solicitud de prestamo</h5>
+                                    <h5 class="modal-title" id="crearTransaccionModalLabel">Confirmation of loan application</h5>
                                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                 </div>
                                 <div class="modal-body">
-                                    <p>Usted va a solicitar un prestamo {{loanName}} por un importe de ${{importe}} a pagar en {{cantidadDePagosSeleccionado}} cuotas.</p>
-                                    <p>Importe de la cuota: ${{((importe * 1.2)/cantidadDePagosSeleccionado).toFixed(2)}}</p>
-                                    <p>¿Desea continuar?</p>
+                                    <p>You are going to request a/an {{loanName}} loan for an amount of ${{importe}} to be paid in {{cantidadDePagosSeleccionado}} installments.</p>
+                                    <p>Amount of each installment: ${{((importe * 1.2)/cantidadDePagosSeleccionado).toFixed(2)}}</p>
+                                    <p>Do you wish to continue?</p>
                                 </div>
                                 <div class="modal-footer">
-                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
-                                    <button type="submit" @click.prevent="solicitarPrestamo" class="btn btn-primary">Continuar</button>
+                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                                    <button type="submit" @click.prevent="solicitarPrestamo" class="btn btn-primary">Continue</button>
                                 </div>
                             </div>
                         </div>
@@ -119,14 +119,14 @@
                 <h3 class="mt-5 mb-5"><svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" class="bi bi-key" viewBox="0 0 16 16">
                     <path d="M0 8a4 4 0 0 1 7.465-2H14a.5.5 0 0 1 .354.146l1.5 1.5a.5.5 0 0 1 0 .708l-1.5 1.5a.5.5 0 0 1-.708 0L13 9.207l-.646.647a.5.5 0 0 1-.708 0L11 9.207l-.646.647a.5.5 0 0 1-.708 0L9 9.207l-.646.647A.5.5 0 0 1 8 10h-.535A4 4 0 0 1 0 8zm4-3a3 3 0 1 0 2.712 4.285A.5.5 0 0 1 7.163 9h.63l.853-.854a.5.5 0 0 1 .708 0l.646.647.646-.647a.5.5 0 0 1 .708 0l.646.647.646-.647a.5.5 0 0 1 .708 0l.646.647.793-.793-1-1h-6.63a.5.5 0 0 1-.451-.285A3 3 0 0 0 4 5z"/>
                     <path d="M4 8a1 1 0 1 1-2 0 1 1 0 0 1 2 0z"/>
-                  </svg> Accesos rapidos</h3>
+                  </svg> Quick access</h3>
                 <div class="d-flex justify-content-evenly row gap-2" id="iconosAccesosRapidos">
                     <div class="col d-flex flex-column align-items-center">
                         <div class="card h-100 w-75 sombra">
                             <div class="card-body d-flex flex-column align-items-center tarjetita">
                                 <a href="#" class="accesosRapidosLinks d-flex flex-column align-items-center">
                                     <img src="./assets/icons8-cash-in-hand-50.png" class="accesosRapidosImagenes" alt="pagos">
-                                    <h6 class="card-title">Pagos</h6>
+                                    <h6 class="card-title">Payments</h6>
                                 </a>
                             </div>
                         </div>
@@ -136,7 +136,7 @@
                             <div class="card-body d-flex flex-column align-items-center tarjetita">
                                 <a href="#" class="accesosRapidosLinks d-flex flex-column align-items-center">
                                     <img src="./assets/icons8-loan-64.png" class="accesosRapidosImagenes" alt="prestamos">
-                                    <h6 class="card-title">Prestamos</h6>
+                                    <h6 class="card-title">Loans</h6>
                                 </a>
                             </div>
                         </div>
@@ -146,7 +146,7 @@
                             <div class="card-body d-flex flex-column align-items-center tarjetita">
                                 <a href="#" class="accesosRapidosLinks d-flex flex-column align-items-center">
                                     <img src="./assets/icons8-prepaid-recharge-80.png" class="accesosRapidosImagenes" alt="recharge">
-                                    <h6 class="card-title">Recargas</h6>
+                                    <h6 class="card-title">Refills</h6>
                                 </a>
                             </div>
                         </div>
@@ -156,7 +156,7 @@
                             <div class="card-body d-flex flex-column align-items-center tarjetita">
                                 <a href="#" class="accesosRapidosLinks d-flex flex-column align-items-center">
                                     <img src="./assets/icons8-investment-66.png" class="accesosRapidosImagenes" alt="inversiones">
-                                    <h6 class="card-title">Inversiones</h6>
+                                    <h6 class="card-title">Investments</h6>
                                 </a>
                             </div>
                         </div>
@@ -166,7 +166,7 @@
                             <div class="card-body d-flex flex-column align-items-center tarjetita">
                                 <a href="/web/transfers.html" class="accesosRapidosLinks d-flex flex-column align-items-center">
                                     <img src="./assets/icons8-money-transfer-64.png" class="accesosRapidosImagenes" alt="transferencias">
-                                    <h6 class="card-title">Transferencias</h6>
+                                    <h6 class="card-title">Transfers</h6>
                                 </a>
                             </div>
                         </div>
@@ -176,7 +176,7 @@
                             <div class="card-body d-flex flex-column align-items-center tarjetita">
                                 <a href="/web/cards.html" class="accesosRapidosLinks d-flex flex-column align-items-center">
                                     <img src="./assets/icons8-credit-card-64.png" class="accesosRapidosImagenes" alt="wallet">
-                                    <h6 class="card-title">Tarjetas</h6>
+                                    <h6 class="card-title">Cards</h6>
                                 </a>
                             </div>
                         </div>

@@ -2,28 +2,26 @@ package com.mindhub.homebanking.dtos;
 
 public class PaymentsDTO {
 
-    private String number;
+    private String cardNumber;
     private String securityCode;
     private double amount;
     private String detail;
-    private String payingMethod;
 
     public PaymentsDTO() {
     }
 
-    public PaymentsDTO(String number, String securityCode, double amount, String detail, String payingMethod) {
-        this.number = number;
+    public PaymentsDTO(String cardNumber, String securityCode, double amount, String detail, String payingMethod) {
+        this.cardNumber = cardNumber;
         this.securityCode = securityCode;
         this.amount = amount;
         this.detail = detail;
-        this.payingMethod = payingMethod;
     }
 
-    public String getNumber() {
-        return number;
+    public String getCardNumber() {
+        return cardNumber;
     }
-    public void setNumber(String number) {
-        this.number = number;
+    public void setCardNumber(String cardNumber) {
+        this.cardNumber = cardNumber;
     }
     public String getSecurityCode() {
         return securityCode;
@@ -42,11 +40,5 @@ public class PaymentsDTO {
     }
     public void setDetail(String detail) {
         this.detail = detail;
-    }
-    public String getPayingMethod() {
-        return payingMethod;
-    }
-    public void setPayingMethod(String payingMethod) {
-        this.payingMethod = payingMethod;
     }
 }

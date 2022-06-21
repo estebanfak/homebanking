@@ -169,16 +169,16 @@
     
     @keyframes tiltImage {
         0% {
-            /* transform: skewY(10deg); */
-            transform: translateX(30px);
+            /* transform: skewY(20deg); */
+            transform: translateY(0px);
         }
         50% {
-            /* transform: skewY(-10deg); */
-            transform: translateX(0px);
+            /* transform: skewY(00deg); */
+            transform: translateY(-15px);
         }
         100% {
-            /* transform: skewY(10deg); */
-            transform: translateX(30px);
+            /* transform: skewY(20deg); */
+            transform: translateY(0px);
         }
     }
     /*---------------------------------------------------- FIN VENCIMIENTO TARJETA------------------------------------------------------------------*/

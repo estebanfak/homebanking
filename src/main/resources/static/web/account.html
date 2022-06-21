@@ -107,11 +107,11 @@
                         </div>
                         <div class="modal-body">
                             <p>Are you sure you want to close this account permanently?</p>
-                            <p>You can not close an account with negative or positive balance.</p>
+                            <p v-if="saldoCuenta != 0">The balance of this account is: ${{saldoCuenta}}, you can not close an account with negative or positive balance.</p>
                         </div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
-                            <button type="button" @click="closeAccount" class="btn btn-primary">Close account</button>
+                            <button type="button" @click="closeAccount" class="btn btn-primary" :disabled="saldoCuenta != 0">Close account</button>
                         </div>
                     </div>
                 </div>
