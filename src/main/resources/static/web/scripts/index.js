@@ -23,7 +23,6 @@ const APP = Vue.createApp({
             axios.post('/api/login', `email=${email}&password=${password}`, { headers: { 'content-type': 'application/x-www-form-urlencoded' } })
                 .then(response => {
                     if (response.status == 200) {
-                        console.log(response);
                         location = '/web/accounts.html';
                     }
                 })
@@ -40,7 +39,6 @@ const APP = Vue.createApp({
             if (nombre != "" && apellido != "" && email != "" && email.includes("@" && ".com") && password != "") {
                 axios.post('/api/clients', `firstName=${nombre}&lastName=${apellido}&email=${email}&password=${password}`, { headers: { 'content-type': 'application/x-www-form-urlencoded' } })
                     .then(response => {
-                        console.log(response.status);
                         if (response.status == 201) {
                             this.login(email, password)
                         }

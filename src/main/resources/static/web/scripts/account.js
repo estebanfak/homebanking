@@ -10,7 +10,6 @@ const APP = Vue.createApp({
             nombreCuenta: "",
             saldoCuenta: 0,
             saldoInicial: 0,
-            pepe: "hola",
             horaActual: "",
             horaActual2: "",
             nombreCliente: "",
@@ -53,7 +52,7 @@ const APP = Vue.createApp({
                         location = '/web/index.html';
                     }
                 })
-                .then(response => console.log('signed out!!!'))
+
         },
         closeAccount() {
             axios.patch(`/api/clients/current/account?accountNumber=${this.nombreCuenta}`)

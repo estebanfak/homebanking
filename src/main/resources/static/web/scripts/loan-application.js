@@ -52,7 +52,6 @@ const APP = Vue.createApp({
                         accountDestiny: this.cuentaAcreditacion,
                         loanName: this.loanFiltrado[0].name
                     })
-                    .then(() => console.log('created'))
                     .then(() => swal("Solicitud de prestamo completada!"))
                     .then(() => location = '/web/accounts.html')
                     .catch(() => console.log('error'))
@@ -80,7 +79,6 @@ const APP = Vue.createApp({
                         location = '/web/index.html';
                     }
                 })
-                .then(() => console.log('signed out!!!'))
         },
         goBack() {
             location = '/web/accounts.html';

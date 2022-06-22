@@ -48,7 +48,6 @@ const APP = Vue.createApp({
 
         realizarTransferencia() {
             axios.post('/api/transactions', `detail='${this.descripcion}'&amount=${this.importe}&accountOriginNumber=${this.cuentaOrigenSeleccionada}&accountDestinationNumber=${this.cuentaDestino}`, { headers: { 'content-type': 'application/x-www-form-urlencoded' } })
-                .then(() => console.log('Transferencia realizada'))
                 .then(() => swal("Transferencia realizada con éxito!"))
                 .then(response => {
                     location = '/web/accounts.html'
@@ -65,7 +64,6 @@ const APP = Vue.createApp({
                         location = '/web/index.html';
                     }
                 })
-                .then(() => console.log('signed out!!!'))
         },
         goBack() {
             location = '/web/accounts.html';

@@ -42,7 +42,6 @@ const APP = Vue.createApp({
 
         createCard() {
             axios.post('/api/clients/current/cards', `cardType=${this.cardType}&cardColor=${this.cardColor}`, { headers: { 'content-type': 'application/x-www-form-urlencoded' } })
-                .then(() => console.log('Creado'))
                 .then(response => {
                     location = '/web/cards.html'
                 })
@@ -57,7 +56,6 @@ const APP = Vue.createApp({
                         location = '/web/index.html';
                     }
                 })
-                .then(() => console.log('signed out!!!'))
         },
         goBack() {
             location = '/web/accounts.html';

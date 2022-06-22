@@ -48,12 +48,10 @@ const APP = Vue.createApp({
                         location = '/web/index.html';
                     }
                 })
-                .then(response => console.log('signed out!!!'))
         },
 
         agregarCuenta() {
             axios.post(`/api/clients/current/accounts?accountType=${this.accountType}`, { headers: { 'content-type': 'application/x-www-form-urlencoded' } })
-                .then(response => console.log('Creado'))
                 .then(response => { location = '/web/accounts.html'; })
         },
     },
