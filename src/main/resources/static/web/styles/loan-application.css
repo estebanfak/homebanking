@@ -26,6 +26,13 @@ header>div>a>img {
     max-width: 45% !important;
 }
 
+#goBackArrow {
+    position: relative !important;
+    left: -20px !important;
+    border: none;
+    color: var(--background-color-html);
+}
+
 body>div> {
     min-height: 100% !important;
 }

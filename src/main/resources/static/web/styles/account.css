@@ -23,6 +23,13 @@ header>div>a>img {
     right: 10% !important;
 }
 
+#goBackArrow {
+    position: relative !important;
+    left: -20px !important;
+    border: none;
+    color: var(--background-color-html);
+}
+
 div>#app {
     background-color: var(--background-color-html) !important;
 }

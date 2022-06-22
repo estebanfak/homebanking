@@ -104,6 +104,9 @@ const APP = Vue.createApp({
             } else {
                 swal("Error", "Debes elegir una tarjeta", "error");
             }
+        },
+        goBack() {
+            location = '/web/accounts.html';
         }
     },
 

@@ -127,8 +127,9 @@ public class TransactionController {
         if(!client.getAccounts().contains(account)){
             return new ResponseEntity<>("You are not the owner of the account", HttpStatus.FORBIDDEN);
         }
+        LocalDateTime localDateTime = LocalDateTime.now();
 
-        String file_name="D:\\pdf\\prueba.pdf";
+        String file_name="D:\\pdf\\prueba" + localDateTime + ".pdf";
         Document document = new Document();
 
         PdfWriter.getInstance(document, new FileOutputStream(file_name));
@@ -145,11 +146,6 @@ public class TransactionController {
 
         Paragraph paragraph1 = new Paragraph("Account: " + account.getNumber(), fontTitle);
         paragraph1.setAlignment(Paragraph.ALIGN_LEFT);
-
-
-        Paragraph paragraph2 = new Paragraph("Account: " + account.getNumber(), fontTitle);
-        paragraph1.setAlignment(Paragraph.ALIGN_LEFT);
-
 
         PdfPTable table = new PdfPTable(4);
         PdfPCell c1 = new PdfPCell(new Phrase("Date"));

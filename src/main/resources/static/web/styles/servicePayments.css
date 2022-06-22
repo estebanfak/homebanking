@@ -36,6 +36,13 @@ div>#app {
     left: 13%;
 }
 
+#goBackArrow {
+    position: relative !important;
+    left: -20px !important;
+    border: none;
+    color: var(--background-color-html);
+}
+
 header>h1 {
     height: 10vh;
 }

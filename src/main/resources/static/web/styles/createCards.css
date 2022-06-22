@@ -30,6 +30,13 @@ body>div> {
     min-height: 100% !important;
 }
 
+#goBackArrow {
+    position: relative !important;
+    left: -20px !important;
+    border: none;
+    color: var(--background-color-html);
+}
+
 .posicionBotonesYOpciones {
     position: relative;
     left: 10%;

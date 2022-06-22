@@ -86,6 +86,9 @@ const APP = Vue.createApp({
             } else {
                 swal("Error", "You must complete all the fields", "error");
             }
+        },
+        goBack() {
+            location = '/web/accounts.html';
         }
     },
 

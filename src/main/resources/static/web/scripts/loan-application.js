@@ -82,6 +82,9 @@ const APP = Vue.createApp({
                 })
                 .then(() => console.log('signed out!!!'))
         },
+        goBack() {
+            location = '/web/accounts.html';
+        }
     },
 
 
