@@ -7,10 +7,9 @@ public class PaymentsDTO {
     private double amount;
     private String detail;
 
-    public PaymentsDTO() {
-    }
+    public PaymentsDTO() {}
 
-    public PaymentsDTO(String cardNumber, String securityCode, double amount, String detail, String payingMethod) {
+    public PaymentsDTO(String cardNumber, String securityCode, double amount, String detail) {
         this.cardNumber = cardNumber;
         this.securityCode = securityCode;
         this.amount = amount;

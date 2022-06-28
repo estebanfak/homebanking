@@ -4,10 +4,11 @@ import com.lowagie.text.*;
 import com.lowagie.text.pdf.PdfPCell;
 import com.lowagie.text.pdf.PdfPTable;
 import com.lowagie.text.pdf.PdfWriter;
-import com.mindhub.homebanking.models.Account;
-import com.mindhub.homebanking.models.Client;
-import com.mindhub.homebanking.models.Transaction;
+import com.mindhub.homebanking.dtos.PaymentsDTO;
+import com.mindhub.homebanking.models.*;
+import com.mindhub.homebanking.repositories.CardRepository;
 import com.mindhub.homebanking.services.AccountService;
+import com.mindhub.homebanking.services.CardService;
 import com.mindhub.homebanking.services.ClientService;
 import com.mindhub.homebanking.services.TransacctionService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,6 +24,8 @@ import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.time.chrono.ChronoLocalDate;
+import java.util.Objects;
 import java.util.Set;
 
 import org.springframework.web.bind.annotation.GetMapping;
@@ -38,6 +41,8 @@ public class TransactionController {
     private AccountService accountService;
     @Autowired
     private TransacctionService transacctionService;
+    @Autowired
+    private CardService cardService;
 
 //---------------------------------------- PRUEBAS ---------------------------------------------------------------------
     @GetMapping("/transactions/destination")
@@ -99,7 +104,61 @@ public class TransactionController {
         accountService.saveAccount(accountDestination);
         return new ResponseEntity<>(HttpStatus.CREATED);
     }
+    //------------------------------------------------------------------------------------------------------------------
+    @CrossOrigin
+    @Transactional
+    @PostMapping("/transactions/payments")
+    public ResponseEntity<Object> createPayment(@RequestBody PaymentsDTO paymentsDTO){
+        String cvv = paymentsDTO.getSecurityCode();
+        String detail = paymentsDTO.getDetail();
+        double amount = paymentsDTO.getAmount();
 
+        if(cardService.getCard(paymentsDTO.getCardNumber()) == null){
+            return new ResponseEntity<>("Card number is invalid", HttpStatus.FORBIDDEN);
+        }
+        Card card = cardService.getCard(paymentsDTO.getCardNumber());
+        Client client = card.getClient();
+        Account account = client.getAccounts().stream().filter(account1 -> account1.getBalance()>= amount && account1.isActive()).findFirst().orElse(null);
+
+        if(cvv.isEmpty()){
+            return new ResponseEntity<>("Missing data: CVV", HttpStatus.FORBIDDEN);
+        }
+        if(detail.isEmpty()){
+            return new ResponseEntity<>("Missing data: Detail", HttpStatus.FORBIDDEN);
+        }
+        if(amount <= 0){
+            return new ResponseEntity<>("Missing data: Amount", HttpStatus.FORBIDDEN);
+        }
+        if(!Objects.equals(card.getCvv(), cvv)){
+            return new ResponseEntity<>("CVV does not match this card", HttpStatus.FORBIDDEN);
+        }
+        if(!card.isActive()){
+            return new ResponseEntity<>("This card is disabled", HttpStatus.FORBIDDEN);
+        }
+        LocalDateTime localDateTime = LocalDateTime.now();
+        if(localDateTime.getYear() > card.getThruDate().getYear()){
+            return new ResponseEntity<>("This card is expired (year)", HttpStatus.FORBIDDEN);
+        } else if(localDateTime.getYear() == card.getThruDate().getYear()){
+                if (card.getThruDate().getMonthValue()-(localDateTime.getMonthValue()) < 0) {
+                return new ResponseEntity<>("This card is expired (month)", HttpStatus.FORBIDDEN);
+            }
+        }
+        if(account == null){
+            return new ResponseEntity<>("You have no account with enough balance", HttpStatus.FORBIDDEN);
+        }
+        if(account.getBalance()< amount){
+            return new ResponseEntity<>("You have no account with enough balance", HttpStatus.FORBIDDEN);
+        }
+        if (!account.isActive()){
+            return new ResponseEntity<>("You have no active account", HttpStatus.FORBIDDEN);
+        }
+        Transaction transaction = new Transaction(DEBIT, localDateTime, -amount, detail, account);
+        account.setBalance(account.getBalance() - amount);
+        transacctionService.saveTransaction(transaction);
+        accountService.saveAccount(account);
+        return new ResponseEntity<>("Payment approved", HttpStatus.ACCEPTED);
+    }
+    //------------------------------------------------------------------------------------------------------------------
 
     //------------------------------------------------------------------------------------------------------------------
     @GetMapping("/pdf/transactions")

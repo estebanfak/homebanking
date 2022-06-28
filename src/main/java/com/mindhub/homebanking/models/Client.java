@@ -43,7 +43,6 @@ public class Client {
     public Set<ClientLoan> getClientLoans() {
         return clientLoans;
     }
-
     public void setClientLoans(Set<ClientLoan> clientLoans) {
         this.clientLoans = clientLoans;
     }

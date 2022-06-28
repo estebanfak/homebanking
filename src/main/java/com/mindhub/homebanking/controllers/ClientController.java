@@ -44,7 +44,7 @@ public class ClientController {
     public ResponseEntity<Object> register(
             @RequestParam String firstName, @RequestParam String lastName,
             @RequestParam String email, @RequestParam String password) {
-        String name = firstName;
+//        String name = firstName;
         if (firstName.isEmpty()) {
             return new ResponseEntity<>("Missing data: First Name", HttpStatus.FORBIDDEN);
         }
