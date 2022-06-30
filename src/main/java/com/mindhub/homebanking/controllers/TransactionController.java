@@ -31,7 +31,7 @@ import java.util.Set;
 import org.springframework.web.bind.annotation.GetMapping;
 import static com.mindhub.homebanking.models.TransactionType.*;
 
-
+@CrossOrigin
 @RestController
 @RequestMapping("/api")
 public class TransactionController {
@@ -105,7 +105,7 @@ public class TransactionController {
         return new ResponseEntity<>(HttpStatus.CREATED);
     }
     //------------------------------------------------------------------------------------------------------------------
-    @CrossOrigin
+
     @Transactional
     @PostMapping("/transactions/payments")
     public ResponseEntity<Object> createPayment(@RequestBody PaymentsDTO paymentsDTO){
